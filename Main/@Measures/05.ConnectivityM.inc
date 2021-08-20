@@ -31,7 +31,7 @@ Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
 Substitute="(.*){:-:}(.*){:-:}(.*)":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","\\1":"","":"[\9]"
-OnUpdateAction=[!UpdateMeasure "measureInternetUpdateIcon"]
+OnUpdateAction=[!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 500][!UpdateMeasure "measureServerPingDetailsData"][!Delay 500][!CommandMeasure "measureServerPingDetailsData" "Run"]
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -46,6 +46,7 @@ IfCondition3=(measureInternetUpdateIcon = 2)
 IfTrueAction3=[!SetOption MeterInternetConnectedImage ImageName Warning.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
 IfCondition4=(measureInternetUpdateIcon = 3)
 IfTrueAction4=[!SetOption MeterInternetConnectedImage ImageName Offline.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+; FinishAction=[!SetVariable "isInternetConnected" "[measureInternetConnected]"]
 UpdateDivider=-1
 DynamicVariables=1
 

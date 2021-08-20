@@ -52,7 +52,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*NIC Names:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="(?s).*NIC Names:(.*?\n).*":"\1","(#CRLF#+)":"","^(.+)$":"• \1",",":"[\13][\10]• ","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 

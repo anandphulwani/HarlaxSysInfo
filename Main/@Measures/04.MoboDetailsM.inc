@@ -14,7 +14,7 @@ Plugin=RunCommand
 Parameter=wmic path win32_VideoController get name
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="Name.*#CRLF#":"","Radeon":"AMD Radeon","NVIDIA GeForce":"NVIDIA GeForce","^Radmin(.*)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="Name.*#CRLF#":"","Radeon":"AMD Radeon","NVIDIA GeForce":"NVIDIA GeForce","Radmin.*":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
 
 

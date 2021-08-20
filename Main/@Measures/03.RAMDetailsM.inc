@@ -5,7 +5,7 @@ Parameter=wmic memorychip get manufacturer
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","Manufacturer#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Manufacturer.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMType]
@@ -31,18 +31,21 @@ Parameter=wmic memorychip get devicelocator
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","DeviceLocator#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^DeviceLocator.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMCapacities]
 Measure=Plugin
 Plugin=RunCommand
-Parameter=wmic memorychip get capacity
+Program="powershell.exe"
+Parameter="-inputformat none -NoProfile -NonInteractive -command "GWmi CIM_PhysicalMemory | % {\"\" + ($_.capacity / 1GB) + \" GB\"}"
+Parameter=PowerShell -NoProfile -ExecutionPolicy Bypass -NonInteractive -Command "GWmi CIM_PhysicalMemory | % {\"\" + ($_.capacity / 1GB) + \" GB\"}"
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","Capacity#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Capacity.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
+DynamicVariables=1
 
 [measureRAMPartNumbers]
 Measure=Plugin
@@ -51,7 +54,7 @@ Parameter=wmic memorychip get partnumber
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","PartNumber#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^PartNumber.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMSpeeds]
@@ -61,5 +64,5 @@ Parameter=wmic memorychip get speed
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","Speed#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Speed.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(.+)":"\1 MHz","":"[\9]"
 UpdateDivider=-1
