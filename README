@@ -1,3 +1,7 @@
 Version: 1.0.1.0
 
 HarlaxSysInfo is a Rainmeter skin which displays system information as a sidebar on desktop.
+RmSkin is compiled using the Rainmeter software itself, using
+1. Right click on the Rainmeter Tray Icon.
+2. Click on Manage
+3. Create .rmsking package button.
