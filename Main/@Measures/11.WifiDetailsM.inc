@@ -4,7 +4,7 @@ Plugin=Plugins\WiFiStatus
 WiFiInfoType=SSID
 WiFiIntfID=0
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
 UpdateDivider=120
 
 [measureWIFIQuality]
@@ -13,7 +13,7 @@ Plugin=Plugins\WiFiStatus
 WiFiInfoType=Quality
 WiFiIntfID=0
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
 UpdateDivider=120
 
 [measureWIFIEncryption]
@@ -22,7 +22,7 @@ Plugin=Plugins\WiFiStatus
 WiFiInfoType=Encryption
 WiFiIntfID=0
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
 UpdateDivider=120
 
 [measureWIFIAuth]
@@ -31,7 +31,7 @@ Plugin=Plugins\WiFiStatus
 WiFiInfoType=AUTH
 WiFiIntfID=0
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
 UpdateDivider=120
 
 [measureWIFIPhy]
@@ -40,7 +40,7 @@ Plugin=Plugins\WiFiStatus
 WiFiInfoType=PHY
 WiFiIntfID=0
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
 UpdateDivider=120
 
 [measureWIFINetworksCalculator]
@@ -50,7 +50,7 @@ WiFiInfoType=LIST
 WiFiIntfID=0
 WiFiListStyle=3
 RegExpSubstitute=1
-Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","(#CRLF#+)":"#CRLF#","(.+)":"• \1","":"N/A"
+Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","(.+)":"• \1","":"N/A"
 UpdateDivider=120
 DynamicVariables=1
 

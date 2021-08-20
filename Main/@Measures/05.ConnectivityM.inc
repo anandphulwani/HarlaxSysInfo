@@ -10,19 +10,41 @@ IfCondition3=(measureLANConnected <> 1) && (measureLANConnected <> -1)
 IfTrueAction3=[!SetOption MeterLANConnectedImage ImageName ][!UpdateMeter MeterLANConnectedImage][!Redraw]
 UpdateDivider=30
 
+;--------------------------------------------------------------------------------------------------------------------------------------
+[measureLoadServersPingAndPublicIP]
+Measure=Plugin
+Plugin=RunCommand
+Parameter=#ROOTCONFIGPATH#/PythonEXEs/pingAndPublicIPDetails.exe -l -p #ROOTCONFIGPATH#/PingFiles/CheckInternetConnectivity/
+State=Hide
+OutputType=UTF8
+FinishAction=[!SetVariable "loadServersPingAndPublicIP" "[measureLoadServersPingAndPublicIP]"][!Delay 2000][!EnableMeasure "measurePingAndPublicIPDetailsDataFetcher"][!UpdateMeasure "measurePingAndPublicIPDetailsDataFetcher"]
+UpdateDivider=-1
+DynamicVariables=1
+
+[measureUpdateLoadServersPingAndPublicIP]
+Measure=String
+String=#pingAndPublicIPDetailsData#
+RegExpSubstitute=1
+Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\1":"","":"[\9]"
+OnUpdateAction=[!SetVariable "loadServersPingAndPublicIP" "[measureUpdateLoadServersPingAndPublicIP]"]
+UpdateDivider=-1
+DynamicVariables=1
+Disabled=1
+;--------------------------------------------------------------------------------------------------------------------------------------
 [measurePingAndPublicIPDetailsDataFetcher]
 Measure=Calc
 Formula=1
-OnUpdateAction=[!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"][!CommandMeasure measureFetchIPDetailsData "Run"]
+OnUpdateAction=[!UpdateMeasure "measurePingAndPublicIPDetailsData"][!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"][!CommandMeasure measureFetchIPDetailsData "Run"]
 UpdateDivider=#internetConnCheckInterval#
+Disabled=1
 
 [measurePingAndPublicIPDetailsData]
 Measure=Plugin
 Plugin=RunCommand
-Parameter=#ROOTCONFIGPATH#/PythonEXEs/pingAndPublicIPDetails.exe -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckInternetConnectivity/
+Parameter=#ROOTCONFIGPATH#/PythonEXEs/pingAndPublicIPDetails.exe -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckInternetConnectivity/ -s #loadServersPingAndPublicIP#
 State=Hide
 OutputType=UTF8
-FinishAction=[!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!EnableMeasure "measureInternetConnected"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
+FinishAction=[!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!EnableMeasure "measureUpdateLoadServersPingAndPublicIP"][!UpdateMeasure "measureUpdateLoadServersPingAndPublicIP"][!EnableMeasure "measureInternetConnected"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -30,9 +52,8 @@ DynamicVariables=1
 Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
-Substitute="(.*){:-:}(.*){:-:}(.*)":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","\\1":"","":"[\9]"
-OnUpdateAction=[!UpdateMeasure "measureSetServerStatusToNull"][!Delay 1][!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 1][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
-; OnUpdateAction=[!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 1][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
+Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\2","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\2":"","":"[\9]"
+OnUpdateAction=[!UpdateMeasure "measureSetServerStatusToNull"][!Delay 1][!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected]"][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
 UpdateDivider=-1
 DynamicVariables=1
 Disabled=1
@@ -57,7 +78,7 @@ Measure=Plugin
 Plugin=SysInfo
 SysInfoType=DOMAIN_NAME
 RegExpSubstitute=1
-Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureDomainWorkgroup]
@@ -65,5 +86,5 @@ Measure=Plugin
 Plugin=SysInfo
 SysInfoType=DOMAINWORKGROUP
 RegExpSubstitute=1
-Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
