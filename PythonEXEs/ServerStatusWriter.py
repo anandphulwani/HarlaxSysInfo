@@ -80,13 +80,24 @@ if (iniToReadModifiedTime > meterFileModifiedTime) or (iniToReadModifiedTime > m
     measureFileHandle.write("Disabled=1\n")
     measureFileHandle.write(";--------------------------------------------------------------------------------------------------------------------------------------\n\n")
 
+
+    measureFileHandle.write("[measureServerPingDetailsDataError101Checker]\n")
+    measureFileHandle.write("Measure=String\n")
+    measureFileHandle.write("String=#isServerPingDetailsDataError101#\n")
+    measureFileHandle.write("IfMatch=^0$\n")
+    measureFileHandle.write("IfMatchAction=[!SetVariable \"isServerPingDetailsDataError101\" 1][!UpdateMeasure \"measureServerPingDetailsData\"][!CommandMeasure \"measureServerPingDetailsData\" \"Run\"]\n")
+    measureFileHandle.write("IfMatchMode=1\n")
+    measureFileHandle.write("UpdateDivider=-1\n")
+    measureFileHandle.write("DynamicVariables=1\n")
+    measureFileHandle.write("Disabled=1\n\n")
+
     measureFileHandle.write("[measureServerPingDetailsData]\n")
     measureFileHandle.write("Measure=Plugin\n")
     measureFileHandle.write("Plugin=RunCommand\n")
     measureFileHandle.write("Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i \"../ServersToPing.ini\" -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity/ -n #isInternetConnected# -s #loadServersPingDetails#\n")
     measureFileHandle.write("State=Hide\n")
     measureFileHandle.write("OutputType=UTF8\n")
-    measureFileHandle.write("FinishAction=[!SetVariable \"initServersPingDetails\" \"[measureServerPingDetailsData]\"][!UpdateMeasure \"measureUpdateLoadServersPingDetails\"][!UpdateMeasure \"measureServerPingDetailsDataSub1\"]\n")
+    measureFileHandle.write("FinishAction=[!SetVariable \"isServerPingDetailsDataError101\" 0][!SetVariable \"initServersPingDetails\" \"[measureServerPingDetailsData]\"][!UpdateMeasure \"measureUpdateLoadServersPingDetails\"][!UpdateMeasure \"measureServerPingDetailsDataSub1\"]\n")
     measureFileHandle.write("UpdateDivider=-1\n")
     measureFileHandle.write("DynamicVariables=1\n\n")
 

@@ -60,7 +60,8 @@ Plugin=RunCommand
 Parameter=#ROOTCONFIGPATH#/PythonEXEs/getTemperatureAndFan.exe
 State=Hide
 OutputType=ANSI
-FinishAction=[!Log "Ran measureTemperatureAndFanData"][!SetVariable "isTemperatureAndFanDataError101" 0][!SetVariable "temperatureAndFanData" "[measureTemperatureAndFanData]"][!UpdateMeasure "measureCPUTempValue"][!UpdateMeasure "measureCPUFanValue"][!UpdateMeasure "measureMoboTempValue"][!UpdateMeasure "measureOtherFanValue"][!UpdateMeasure "measureGPUTempValue"][!UpdateMeasure "measureHDDModelsAndTempValue"]
+; [!Log "Ran measureTemperatureAndFanData"]
+FinishAction=[!SetVariable "isTemperatureAndFanDataError101" 0][!SetVariable "temperatureAndFanData" "[measureTemperatureAndFanData]"][!UpdateMeasure "measureCPUTempValue"][!UpdateMeasure "measureCPUFanValue"][!UpdateMeasure "measureMoboTempValue"][!UpdateMeasure "measureOtherFanValue"][!UpdateMeasure "measureGPUTempValue"][!UpdateMeasure "measureHDDModelsAndTempValue"]
 UpdateDivider=-1
 DynamicVariables=1
 
