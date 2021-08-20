@@ -19,6 +19,19 @@ UpdateDivider=-1
 DynamicVariables=1
 Disabled=1
 ;--------------------------------------------------------------------------------------------------------------------------------------
+---------------------->
+; [!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
+[measureServerPingDetailsDataError101Checker]
+Measure=String
+String=#isServerPingDetailsDataError101#
+IfMatch=^0$
+IfMatchAction=[!SetVariable "isServerPingDetailsDataError101" 1][!UpdateMeasure "measureServerPingDetailsData"][!CommandMeasure "measureServerPingDetailsData" "Run"]
+IfMatchMode=1
+UpdateDivider=-1
+DynamicVariables=1
+Disabled=1
+---------------------->
+
 
 [measureServerPingDetailsData]
 Measure=Plugin
@@ -26,7 +39,7 @@ Plugin=RunCommand
 Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i "../ServersToPing.ini" -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity/ -n #isInternetConnected# -s #loadServersPingDetails#
 State=Hide
 OutputType=UTF8
-FinishAction=[!SetVariable "initServersPingDetails" "[measureServerPingDetailsData]"][!UpdateMeasure "measureUpdateLoadServersPingDetails"][!UpdateMeasure "measureServerPingDetailsDataSub1"]
+FinishAction=[!Log "Ran measureServerPingDetailsData"][!SetVariable "isServerPingDetailsDataError101" 0][!SetVariable "initServersPingDetails" "[measureServerPingDetailsData]"][!UpdateMeasure "measureUpdateLoadServersPingDetails"][!UpdateMeasure "measureServerPingDetailsDataSub1"]
 UpdateDivider=-1
 DynamicVariables=1
 

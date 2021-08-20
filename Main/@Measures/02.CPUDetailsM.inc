@@ -40,8 +40,19 @@ UpdateDivider=-1
 [measureTemperatureAndFanDataFetcher]
 Measure=Calc
 Formula=1
-OnUpdateAction=[!CommandMeasure "measureTemperatureAndFanData" "Run"]
+OnUpdateAction=[!EnableMeasure "measureTemperatureAndFanDataError101Checker"][!UpdateMeasure "measureTemperatureAndFanDataError101Checker"]
 UpdateDivider=#temperatureAndFanCheckInterval#
+DynamicVariables=1
+
+[measureTemperatureAndFanDataError101Checker]
+Measure=String
+String=#isTemperatureAndFanDataError101#
+IfMatch=^0$
+IfMatchAction=[!SetVariable "isTemperatureAndFanDataError101" 1][!UpdateMeasure "measureTemperatureAndFanData"][!CommandMeasure "measureTemperatureAndFanData" "Run"]
+IfMatchMode=1
+UpdateDivider=-1
+DynamicVariables=1
+Disabled=1
 
 [measureTemperatureAndFanData]
 Measure=Plugin
@@ -49,7 +60,7 @@ Plugin=RunCommand
 Parameter=#ROOTCONFIGPATH#/PythonEXEs/getTemperatureAndFan.exe
 State=Hide
 OutputType=ANSI
-FinishAction=[!SetVariable "temperatureAndFanData" "[measureTemperatureAndFanData]"][!UpdateMeasure "measureCPUTempValue"][!UpdateMeasure "measureCPUFanValue"][!UpdateMeasure "measureMoboTempValue"][!UpdateMeasure "measureOtherFanValue"][!UpdateMeasure "measureGPUTempValue"][!UpdateMeasure "measureHDDModelsAndTempValue"]
+FinishAction=[!Log "Ran measureTemperatureAndFanData"][!SetVariable "isTemperatureAndFanDataError101" 0][!SetVariable "temperatureAndFanData" "[measureTemperatureAndFanData]"][!UpdateMeasure "measureCPUTempValue"][!UpdateMeasure "measureCPUFanValue"][!UpdateMeasure "measureMoboTempValue"][!UpdateMeasure "measureOtherFanValue"][!UpdateMeasure "measureGPUTempValue"][!UpdateMeasure "measureHDDModelsAndTempValue"]
 UpdateDivider=-1
 DynamicVariables=1
 

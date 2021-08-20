@@ -1,3 +1,4 @@
+from sys import exit
 import os,os.path,time
 import getopt, sys
 import platform, socket, subprocess
@@ -29,11 +30,11 @@ except getopt.error as err:
 
 if (iniToRead == "") or (meterFile == "") or (measureFile == ""):
     print("One of the required arguments iniToRead, meterFile, measureFile missing.")
-    exit()
+    exit(0)
 
 if not os.path.isfile(iniToRead):
     print("Input iniToRead file not found.")
-    exit()
+    exit(0)
 
 
 iniToReadModifiedTime = 0

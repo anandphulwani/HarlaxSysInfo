@@ -34,8 +34,19 @@ Disabled=1
 [measurePingAndPublicIPDetailsDataFetcher]
 Measure=Calc
 Formula=1
-OnUpdateAction=[!UpdateMeasure "measurePingAndPublicIPDetailsData"][!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"][!CommandMeasure measureFetchIPDetailsData "Run"]
+OnUpdateAction=[!EnableMeasure "measurePingAndPublicIPDetailsDataError101Checker"][!UpdateMeasure "measurePingAndPublicIPDetailsDataError101Checker"][!EnableMeasure "measureFetchIPDetailsDataError101Checker"][!UpdateMeasure "measureFetchIPDetailsDataError101Checker"]
 UpdateDivider=#internetConnCheckInterval#
+DynamicVariables=1
+Disabled=1
+
+[measurePingAndPublicIPDetailsDataError101Checker]
+Measure=String
+String=#isPingAndPublicIPDetailsDataError101#
+IfMatch=^0$
+IfMatchAction=[!SetVariable "isPingAndPublicIPDetailsDataError101" "1"][!UpdateMeasure "measurePingAndPublicIPDetailsData"][!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"]
+IfMatchMode=1
+UpdateDivider=-1
+DynamicVariables=1
 Disabled=1
 
 [measurePingAndPublicIPDetailsData]
@@ -44,7 +55,7 @@ Plugin=RunCommand
 Parameter=#ROOTCONFIGPATH#/PythonEXEs/pingAndPublicIPDetails.exe -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckInternetConnectivity/ -s #loadServersPingAndPublicIP#
 State=Hide
 OutputType=UTF8
-FinishAction=[!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!EnableMeasure "measureUpdateLoadServersPingAndPublicIP"][!UpdateMeasure "measureUpdateLoadServersPingAndPublicIP"][!EnableMeasure "measureInternetConnected"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
+FinishAction=[!Log "Ran measurePingAndPublicIPDetailsData"][!SetVariable "isPingAndPublicIPDetailsDataError101" "0"][!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!EnableMeasure "measureUpdateLoadServersPingAndPublicIP"][!UpdateMeasure "measureUpdateLoadServersPingAndPublicIP"][!EnableMeasure "measureInternetConnected"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -53,7 +64,7 @@ Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
 Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\2","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\2":"","":"[\9]"
-OnUpdateAction=[!UpdateMeasure "measureSetServerStatusToNull"][!Delay 1][!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected]"][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
+OnUpdateAction=[!UpdateMeasure "measureSetServerStatusToNull"][!Delay 1][!Log "Updating measureInternetUpdateIcon"][!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected]"][!EnableMeasure "measureServerPingDetailsDataError101Checker"][!UpdateMeasure "measureServerPingDetailsDataError101Checker"]
 UpdateDivider=-1
 DynamicVariables=1
 Disabled=1
@@ -61,15 +72,25 @@ Disabled=1
 [measureInternetUpdateIcon]
 Measure=String
 String=[measureInternetConnected]
-IfCondition=(measureInternetUpdateIcon = 0)
-IfTrueAction=[!SetOption MeterInternetConnectedImage ImageName ""][!UpdateMeter MeterInternetConnectedImage][!Redraw]
-IfCondition2=(measureInternetUpdateIcon = 1)
-IfTrueAction2=[!SetOption MeterInternetConnectedImage ImageName Online.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
-IfCondition3=(measureInternetUpdateIcon = 2)
-IfTrueAction3=[!SetOption MeterInternetConnectedImage ImageName Warning.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
-IfCondition4=(measureInternetUpdateIcon = 3)
-IfTrueAction4=[!SetOption MeterInternetConnectedImage ImageName Offline.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
-; FinishAction=[!SetVariable "isInternetConnected" "[measureInternetConnected]"]
+IfMatch=^0$
+IfMatchAction=[!Log "measureInternetUpdateIcon 0"][!SetOption MeterInternetConnectedImage ImageName ""][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+IfMatch2=^1$
+IfMatchAction2=[!Log "measureInternetUpdateIcon 1"][!SetOption MeterInternetConnectedImage ImageName Online.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+IfMatch3=^2$
+IfMatchAction3=[!Log "measureInternetUpdateIcon 2"][!SetOption MeterInternetConnectedImage ImageName Warning.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+IfMatch4=^3$
+IfMatchAction4=[!Log "measureInternetUpdateIcon 3"][!SetOption MeterInternetConnectedImage ImageName Offline.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+IfMatchMode=1
+; IfCondition=(measureInternetUpdateIcon = 0)
+; IfTrueAction=[!Log "measureInternetUpdateIcon 0"][!SetOption MeterInternetConnectedImage ImageName ""][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+; IfCondition2=(measureInternetUpdateIcon = 1)
+; IfTrueAction2=[!Log "measureInternetUpdateIcon 1"][!SetOption MeterInternetConnectedImage ImageName Online.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+; IfCondition3=(measureInternetUpdateIcon = 2)
+; IfTrueAction3=[!Log "measureInternetUpdateIcon 2"][!SetOption MeterInternetConnectedImage ImageName Warning.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+; IfCondition4=(measureInternetUpdateIcon = 3)
+; IfTrueAction4=[!Log "measureInternetUpdateIcon 3"][!SetOption MeterInternetConnectedImage ImageName Offline.png][!UpdateMeter MeterInternetConnectedImage][!Redraw]
+; ; FinishAction=[!SetVariable "isInternetConnected" "[measureInternetConnected]"]
+; OnUpdateAction=[!Log "OnUpdateAction measureInternetUpdateIcon [measureInternetConnected]"]
 UpdateDivider=-1
 DynamicVariables=1
 

@@ -5,7 +5,7 @@ WiFiInfoType=SSID
 WiFiIntfID=0
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 
 [measureWIFIQuality]
 Measure=Plugin
@@ -14,7 +14,7 @@ WiFiInfoType=Quality
 WiFiIntfID=0
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 
 [measureWIFIEncryption]
 Measure=Plugin
@@ -23,7 +23,7 @@ WiFiInfoType=Encryption
 WiFiIntfID=0
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 
 [measureWIFIAuth]
 Measure=Plugin
@@ -32,7 +32,7 @@ WiFiInfoType=AUTH
 WiFiIntfID=0
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 
 [measureWIFIPhy]
 Measure=Plugin
@@ -41,7 +41,7 @@ WiFiInfoType=PHY
 WiFiIntfID=0
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 
 [measureWIFINetworksCalculator]
 Measure=Plugin
@@ -51,7 +51,7 @@ WiFiIntfID=0
 WiFiListStyle=3
 RegExpSubstitute=1
 Substitute="^(0|-1)$":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(#CRLF#+)":"#CRLF#","(.+)":"• \1","":"N/A"
-UpdateDivider=120
+UpdateDivider=30
 DynamicVariables=1
 
 [measureWIFINetworks]
@@ -60,5 +60,5 @@ String=[measureWIFINetworksCalculator]
 IfMatch=^N\/A$
 IfMatchAction=[!SetOption meterWIFINetworksValue X 4R][!SetOption meterWIFINetworksValue Y 0r][!SetOption meterWIFINetworksValue W 166][!UpdateMeter meterWIFINetworksValue][!Redraw]
 IfNotMatchAction=[!SetOption meterWIFINetworksValue X ((#widthtoggle#+247)+28)][!SetOption meterWIFINetworksValue Y 0R][!SetOption meterWIFINetworksValue W 186][!UpdateMeter meterWIFINetworksValue][!Redraw]
-UpdateDivider=120
+UpdateDivider=30
 DynamicVariables=1

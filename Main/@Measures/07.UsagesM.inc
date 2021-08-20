@@ -36,26 +36,26 @@ UpdateDivider=20
 Measure=FreeDiskSpace
 Drive=#disk1#
 Total=1
-UpdateDivider=120
+UpdateDivider=-1
 
 ; Returns inverted value of free disk space (i.e. used disk space)
 [measureUsedDisk1]
 Measure=FreeDiskSpace
 Drive=#disk1#
 InvertMeasure=1
-UpdateDivider=120
+UpdateDivider=30
 
 [measureTotalDisk2]
 Measure=FreeDiskSpace
 Drive=#disk2#
 Total=1
-UpdateDivider=120
+UpdateDivider=-1
 
 [measureUsedDisk2]
 Measure=FreeDiskSpace
 Drive=#disk2#
 InvertMeasure=1
-UpdateDivider=120
+UpdateDivider=30
 
 [measureIP]
 Measure=String
