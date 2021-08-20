@@ -19,6 +19,7 @@ UpdateDivider=-1
 DynamicVariables=1
 Disabled=1
 ;--------------------------------------------------------------------------------------------------------------------------------------
+
 [measureServerPingDetailsData]
 Measure=Plugin
 Plugin=RunCommand
@@ -34,24 +35,14 @@ Measure=String
 String=[measureServerPingDetailsData]
 RegExpSubstitute=1
 Substitute="(?s)(.*)\|\|\|\|\|(.*)":"\1","([[:blank:]][[:blank:]]+)":" ","\\1":""
-OnUpdateAction=[!SetVariable "serverPingDetailsData" "[measureServerPingDetailsDataSub1]"][!UpdateMeasure "measureServer1"][!UpdateMeasure "measureServer2"][!UpdateMeasure "measureServer3"][!UpdateMeasure "measureServer4"][!UpdateMeasure "measureServer5"][!UpdateMeasure "measureServer6"][!UpdateMeasure "measureServer7"][!UpdateMeasure "measureServer8"][!UpdateMeasure "measureServer9"][!UpdateMeasure "measureServer10"][!UpdateMeasure "measureServer11"][!UpdateMeasure "measureServer12"][!UpdateMeasure "measureServer13"][!UpdateMeasure "measureServer14"]
+OnUpdateAction=[!SetVariable "serverPingDetailsData" "[measureServerPingDetailsDataSub1]"][!UpdateMeasure "measureServer1"][!UpdateMeasure "measureServer2"][!UpdateMeasure "measureServer3"][!UpdateMeasure "measureServer4"][!UpdateMeasure "measureServer5"][!UpdateMeasure "measureServer6"][!UpdateMeasure "measureServer7"][!UpdateMeasure "measureServer8"]
 UpdateDivider=-1
 DynamicVariables=1
-
-
-
-
-
-
-
-
-
-
 
 [measureSetServerStatusToNull]
 Measure=String
 String=
-OnUpdateAction=[!SetVariable "serverPingDetailsData" "BSNLRouter:-2[\13][\10]TataSkyRouter:-2[\13][\10]AirtelRouter:-2[\13][\10]PfSense:-2[\13][\10]WifiOld:-2[\13][\10]WifiNew:-2[\13][\10]CiscoWifiAPDDWRT:-2[\13][\10]proxmoxA:-2[\13][\10]proxmoxJ:-2[\13][\10]Legend:-2[\13][\10]Tulip:-2[\13][\10]xammpserver:-2[\13][\10]Flourish:-2[\13][\10]PowerOutageRouter:-2[\13][\10]"][!UpdateMeasure "measureServer1"][!UpdateMeasure "measureServer2"][!UpdateMeasure "measureServer3"][!UpdateMeasure "measureServer4"][!UpdateMeasure "measureServer5"][!UpdateMeasure "measureServer6"][!UpdateMeasure "measureServer7"][!UpdateMeasure "measureServer8"][!UpdateMeasure "measureServer9"][!UpdateMeasure "measureServer10"][!UpdateMeasure "measureServer11"][!UpdateMeasure "measureServer12"][!UpdateMeasure "measureServer13"][!UpdateMeasure "measureServer14"]
+OnUpdateAction=[!SetVariable "serverPingDetailsData" "01.PfSense:-2[\13][\10]02.TataSkyRouter:-2[\13][\10]03.AirtelRouter:-2[\13][\10]04.BSNLRouter:-2[\13][\10]05.WifiOld:-2[\13][\10]06.WifiNew:-2[\13][\10]07.CiscoWifiDDWRT:-2[\13][\10]08.Flourish:-2[\13][\10]"][!UpdateMeasure "measureServer1"][!UpdateMeasure "measureServer2"][!UpdateMeasure "measureServer3"][!UpdateMeasure "measureServer4"][!UpdateMeasure "measureServer5"][!UpdateMeasure "measureServer6"][!UpdateMeasure "measureServer7"][!UpdateMeasure "measureServer8"]
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -59,7 +50,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*BSNLRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*01.PfSense:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer1UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -67,7 +58,7 @@ DynamicVariables=1
 [measureServer1UpdateIcon]
 Measure=String
 String=[measureServer1]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer1Image ImageName Warning.png][!UpdateMeter meterServer1Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer1Image ImageName Online.png][!UpdateMeter meterServer1Image]
@@ -82,7 +73,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*TataSkyRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*02.TataSkyRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer2UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -90,7 +81,7 @@ DynamicVariables=1
 [measureServer2UpdateIcon]
 Measure=String
 String=[measureServer2]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer2Image ImageName Warning.png][!UpdateMeter meterServer2Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer2Image ImageName Online.png][!UpdateMeter meterServer2Image]
@@ -105,7 +96,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*AirtelRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*03.AirtelRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer3UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -113,7 +104,7 @@ DynamicVariables=1
 [measureServer3UpdateIcon]
 Measure=String
 String=[measureServer3]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer3Image ImageName Warning.png][!UpdateMeter meterServer3Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer3Image ImageName Online.png][!UpdateMeter meterServer3Image]
@@ -128,7 +119,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*PfSense:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*04.BSNLRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer4UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -136,7 +127,7 @@ DynamicVariables=1
 [measureServer4UpdateIcon]
 Measure=String
 String=[measureServer4]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer4Image ImageName Warning.png][!UpdateMeter meterServer4Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer4Image ImageName Online.png][!UpdateMeter meterServer4Image]
@@ -151,7 +142,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*WifiOld:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*05.WifiOld:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer5UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -159,7 +150,7 @@ DynamicVariables=1
 [measureServer5UpdateIcon]
 Measure=String
 String=[measureServer5]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer5Image ImageName Warning.png][!UpdateMeter meterServer5Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer5Image ImageName Online.png][!UpdateMeter meterServer5Image]
@@ -174,7 +165,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*WifiNew:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*06.WifiNew:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer6UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -182,7 +173,7 @@ DynamicVariables=1
 [measureServer6UpdateIcon]
 Measure=String
 String=[measureServer6]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer6Image ImageName Warning.png][!UpdateMeter meterServer6Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer6Image ImageName Online.png][!UpdateMeter meterServer6Image]
@@ -197,7 +188,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*CiscoWifiAPDDWRT:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*07.CiscoWifiDDWRT:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer7UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -205,7 +196,7 @@ DynamicVariables=1
 [measureServer7UpdateIcon]
 Measure=String
 String=[measureServer7]
-IfMatch=^Online\/Lagging$
+IfMatch=^Online\(Lag\)$
 IfMatchAction=[!SetOption meterServer7Image ImageName Warning.png][!UpdateMeter meterServer7Image]
 IfMatch2=^Online$
 IfMatchAction2=[!SetOption meterServer7Image ImageName Online.png][!UpdateMeter meterServer7Image]
@@ -220,7 +211,7 @@ DynamicVariables=1
 Measure=String
 String=#serverPingDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*proxmoxA:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
+Substitute="(?s).*08.Flourish:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online(Lag)","3":"Offline","4":"No Internet"
 OnUpdateAction=[!UpdateMeasure "measureServer8UpdateIcon"]
 UpdateDivider=-1
 DynamicVariables=1
@@ -228,151 +219,13 @@ DynamicVariables=1
 [measureServer8UpdateIcon]
 Measure=String
 String=[measureServer8]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer8Image ImageName Warning.png][!UpdateMeter meterServer8Image]
+IfMatch=^Online\(Lag\)$
+IfMatchAction=[!SetOption meterServer8Image ImageName Warning.png][!UpdateMeter meterServer8Image][!Redraw]
 IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer8Image ImageName Online.png][!UpdateMeter meterServer8Image]
+IfMatchAction2=[!SetOption meterServer8Image ImageName Online.png][!UpdateMeter meterServer8Image][!Redraw]
 IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer8Image ImageName Offline.png][!UpdateMeter meterServer8Image]
+IfMatchAction3=[!SetOption meterServer8Image ImageName Offline.png][!UpdateMeter meterServer8Image][!Redraw]
 IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer8Image ImageName ""][!UpdateMeter meterServer8Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer9]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*proxmoxJ:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer9UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer9UpdateIcon]
-Measure=String
-String=[measureServer9]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer9Image ImageName Warning.png][!UpdateMeter meterServer9Image]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer9Image ImageName Online.png][!UpdateMeter meterServer9Image]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer9Image ImageName Offline.png][!UpdateMeter meterServer9Image]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer9Image ImageName ""][!UpdateMeter meterServer9Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer10]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*Legend:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer10UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer10UpdateIcon]
-Measure=String
-String=[measureServer10]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer10Image ImageName Warning.png][!UpdateMeter meterServer10Image]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer10Image ImageName Online.png][!UpdateMeter meterServer10Image]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer10Image ImageName Offline.png][!UpdateMeter meterServer10Image]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer10Image ImageName ""][!UpdateMeter meterServer10Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer11]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*Tulip:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer11UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer11UpdateIcon]
-Measure=String
-String=[measureServer11]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer11Image ImageName Warning.png][!UpdateMeter meterServer11Image]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer11Image ImageName Online.png][!UpdateMeter meterServer11Image]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer11Image ImageName Offline.png][!UpdateMeter meterServer11Image]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer11Image ImageName ""][!UpdateMeter meterServer11Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer12]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*xammpserver:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer12UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer12UpdateIcon]
-Measure=String
-String=[measureServer12]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer12Image ImageName Warning.png][!UpdateMeter meterServer12Image]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer12Image ImageName Online.png][!UpdateMeter meterServer12Image]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer12Image ImageName Offline.png][!UpdateMeter meterServer12Image]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer12Image ImageName ""][!UpdateMeter meterServer12Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer13]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*Flourish:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer13UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer13UpdateIcon]
-Measure=String
-String=[measureServer13]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer13Image ImageName Warning.png][!UpdateMeter meterServer13Image]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer13Image ImageName Online.png][!UpdateMeter meterServer13Image]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer13Image ImageName Offline.png][!UpdateMeter meterServer13Image]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer13Image ImageName ""][!UpdateMeter meterServer13Image]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer14]
-Measure=String
-String=#serverPingDetailsData#
-RegExpSubstitute=1
-Substitute="(?s).*PowerOutageRouter:(.*?\n)":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","-2":"","1":"Online","2":"Online/Lagging","3":"Offline","4":"No Internet"
-OnUpdateAction=[!UpdateMeasure "measureServer14UpdateIcon"]
-UpdateDivider=-1
-DynamicVariables=1
-
-[measureServer14UpdateIcon]
-Measure=String
-String=[measureServer14]
-IfMatch=^Online\/Lagging$
-IfMatchAction=[!SetOption meterServer14Image ImageName Warning.png][!UpdateMeter meterServer14Image][!Redraw]
-IfMatch2=^Online$
-IfMatchAction2=[!SetOption meterServer14Image ImageName Online.png][!UpdateMeter meterServer14Image][!Redraw]
-IfMatch3=^Offline$
-IfMatchAction3=[!SetOption meterServer14Image ImageName Offline.png][!UpdateMeter meterServer14Image][!Redraw]
-IfMatch4=^No Internet$|^$
-IfMatchAction4=[!SetOption meterServer14Image ImageName ""][!UpdateMeter meterServer14Image][!Redraw]
+IfMatchAction4=[!SetOption meterServer8Image ImageName ""][!UpdateMeter meterServer8Image][!Redraw]
 UpdateDivider=-1
 DynamicVariables=1

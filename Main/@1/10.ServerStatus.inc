@@ -22,7 +22,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer1
-Text="BSNLRouter: %1"
+Text="01.PfSense: %1"
 Group=Hidethis
 
 [meterServer2Image]
@@ -39,7 +39,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer2
-Text="TataSkyRouter: %1"
+Text="02.TataSkyRouter: %1"
 Group=Hidethis
 
 [meterServer3Image]
@@ -56,7 +56,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer3
-Text="AirtelRouter: %1"
+Text="03.AirtelRouter: %1"
 Group=Hidethis
 
 [meterServer4Image]
@@ -73,7 +73,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer4
-Text="PfSense: %1"
+Text="04.BSNLRouter: %1"
 Group=Hidethis
 
 [meterServer5Image]
@@ -90,7 +90,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer5
-Text="WifiOld: %1"
+Text="05.WifiOld: %1"
 Group=Hidethis
 
 [meterServer6Image]
@@ -107,7 +107,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer6
-Text="WifiNew: %1"
+Text="06.WifiNew: %1"
 Group=Hidethis
 
 [meterServer7Image]
@@ -124,7 +124,7 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer7
-Text="CiscoWifiAPDDWRT: %1"
+Text="07.CiscoWifiDDWRT: %1"
 Group=Hidethis
 
 [meterServer8Image]
@@ -141,108 +141,6 @@ MeterStyle=StyleBoldLeft
 X=10R
 Y=-2r
 MeasureName=measureServer8
-Text="proxmoxA: %1"
-Group=Hidethis
-
-[meterServer9Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer9]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer9
-Text="proxmoxJ: %1"
-Group=Hidethis
-
-[meterServer10Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer10]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer10
-Text="Legend: %1"
-Group=Hidethis
-
-[meterServer11Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer11]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer11
-Text="Tulip: %1"
-Group=Hidethis
-
-[meterServer12Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer12]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer12
-Text="xammpserver: %1"
-Group=Hidethis
-
-[meterServer13Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer13]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer13
-Text="Flourish: %1"
-Group=Hidethis
-
-[meterServer14Image]
-Meter=Image
-X=(#widthtoggle#+247)
-Y=4R
-W=10
-H=10
-Group=Hidethis
-
-[meterServer14]
-Meter=String
-MeterStyle=StyleBoldLeft
-X=10R
-Y=-2r
-MeasureName=measureServer14
-Text="PowerOutageRouter: %1"
+Text="08.Flourish: %1"
 Group=Hidethis
 

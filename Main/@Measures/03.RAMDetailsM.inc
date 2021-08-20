@@ -5,7 +5,7 @@ Parameter=wmic memorychip get manufacturer
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Manufacturer([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Manufacturer([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","0x.*$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMType]
@@ -30,7 +30,7 @@ Parameter=wmic memorychip get devicelocator
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^DeviceLocator([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^DeviceLocator([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","0x.*$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMCapacities]
@@ -42,7 +42,7 @@ Parameter=PowerShell -NoProfile -ExecutionPolicy Bypass -NonInteractive -Command
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Capacity([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Capacity([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","0x.*$":"","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -53,7 +53,7 @@ Parameter=wmic memorychip get partnumber
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^PartNumber([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^PartNumber([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","0x.*$":"","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMSpeeds]
@@ -63,5 +63,5 @@ Parameter=wmic memorychip get speed
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Speed([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(.+)":"\1 MHz","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Speed([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(.+)":"\1 MHz","0x.*$":"","":"[\9]"
 UpdateDivider=-1
