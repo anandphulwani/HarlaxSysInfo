@@ -62,7 +62,7 @@ if (iniToReadModifiedTime > meterFileModifiedTime) or (iniToReadModifiedTime > m
     measureFileHandle.write("[measureLoadServersPingDetails]\n")
     measureFileHandle.write("Measure=Plugin\n")
     measureFileHandle.write("Plugin=RunCommand\n")
-    measureFileHandle.write("Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i \"../ServersToPing.ini\" -p #ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity/ -l\n")
+    measureFileHandle.write("Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i \"../ServersToPing.ini\" -p \"#ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity//\" -l\n")
     measureFileHandle.write("State=Hide\n")
     measureFileHandle.write("OutputType=UTF8\n")
     measureFileHandle.write("FinishAction=[!SetVariable \"initServersPingDetails\" \"[measureLoadServersPingDetails]\"][!EnableMeasure \"measureUpdateLoadServersPingDetails\"][!UpdateMeasure \"measureUpdateLoadServersPingDetails\"]\n")

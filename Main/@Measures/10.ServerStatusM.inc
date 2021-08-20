@@ -2,7 +2,7 @@
 [measureLoadServersPingDetails]
 Measure=Plugin
 Plugin=RunCommand
-Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i "../ServersToPing.ini" -p #ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity/ -l
+Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i "../ServersToPing.ini" -p "#ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity//" -l
 State=Hide
 OutputType=UTF8
 FinishAction=[!SetVariable "initServersPingDetails" "[measureLoadServersPingDetails]"][!EnableMeasure "measureUpdateLoadServersPingDetails"][!UpdateMeasure "measureUpdateLoadServersPingDetails"]
