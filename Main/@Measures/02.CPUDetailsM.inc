@@ -5,7 +5,7 @@ RegKey=HARDWARE\DESCRIPTION\System\CentralProcessor\0
 RegValue=ProcessorNameString
 UpdateDivider=12000
 RegExpSubstitute=1
-Substitute="CPU":"","\(TM\)|\(tm\)|\(Tm\)":"","Processor":"","(\w{1,4}[\s\S]Core[s]?)":"","(Intel Core|Intel\(R\) Core)":"Intel(R) Core","@":"","AMD Ryzen ":"AMD Ryzen R","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="CPU":"","\(TM\)|\(tm\)|\(Tm\)":"","Processor":"","(\w{1,4}[\s\S]Core[s]?)":"","(Intel Core|Intel\(R\) Core)":"Intel(R) Core","@":"","AMD Ryzen ":"AMD Ryzen R","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureSocketDesignation]
@@ -14,7 +14,7 @@ Plugin=RunCommand
 Parameter=wmic cpu get SocketDesignation
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="SocketDesignation.*#CRLF#":"","(#CRLF#+)":"","\sCPU\s[0-9]":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(.+)":"(\1)","":"[\9]"
+Substitute="SocketDesignation.*#CRLF#":"","(#CRLF#+)":"#CRLF#","\sCPU\s[0-9]":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","(.+)":"(\1)","":"[\9]"
 UpdateDivider=-1
 
 [CPUPhyC]
@@ -24,7 +24,7 @@ Parameter=wmic CPU Get NumberOfCores
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="NumberOfCores":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" "
+Substitute="NumberOfCores":"","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" "
 UpdateDivider=-1
 
 [CPUVirC]
@@ -34,7 +34,7 @@ Parameter=wmic CPU Get NumberOfLogicalProcessors
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="NumberOfLogicalProcessors":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" "
+Substitute="NumberOfLogicalProcessors":"","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" "
 UpdateDivider=-1
 
 [measureTemperatureAndFanDataFetcher]

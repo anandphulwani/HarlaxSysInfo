@@ -22,7 +22,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*IP Addresses:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*IP Addresses:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -30,7 +30,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*Subnet Masks:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*Subnet Masks:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -38,7 +38,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*Default Gateways:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*Default Gateways:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -46,7 +46,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*DNS Servers:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*DNS Servers:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -54,7 +54,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*MAC Addresses:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*MAC Addresses:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -62,7 +62,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*NIC Names:(.*?\n).*":"\1","(#CRLF#+)":"","^(.+)$":"• \1",",":"[\13][\10]• ","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*NIC Names:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#","^(.+)$":"• \1",",":"[\13][\10]• ","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -70,7 +70,7 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*NIC Types:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*NIC Types:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -78,6 +78,6 @@ DynamicVariables=1
 Measure=String
 String=#IPDetailsData#
 RegExpSubstitute=1
-Substitute="(?s).*NIC Speeds:(.*?\n).*":"\1","(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="(?s).*NIC Speeds:(.*?\n).*":"\1","(#CRLF#+)":"#CRLF#",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1

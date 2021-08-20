@@ -4,7 +4,7 @@ Plugin=RunCommand
 Parameter=wmic baseboard get product
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="Product.*#CRLF#":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="Product.*#CRLF#":"","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureMoboTempValue]
@@ -29,7 +29,7 @@ Plugin=RunCommand
 Parameter=wmic path win32_VideoController get name
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="Name.*#CRLF#":"","Radeon":"AMD Radeon","NVIDIA GeForce":"NVIDIA GeForce","Radmin.*":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
+Substitute="Name.*#CRLF#":"","Radeon":"AMD Radeon","NVIDIA GeForce":"NVIDIA GeForce","Radmin.*":"","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureGPUTempValue]

@@ -61,7 +61,7 @@ UpdateDivider=30
 Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
-Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\3","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\3":"N/A","":"N/A"
+Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\3","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\3":"N/A","":"N/A"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -69,7 +69,7 @@ DynamicVariables=1
 Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
-Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\4","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\4":"N/A","":"N/A"
+Substitute="(.*)\|\|\|\|\|(.*){:-:}(.*){:-:}(.*)":"\4","(#CRLF#+)":"#CRLF#","^(\s+)":"","(\s+)$":"","([[:blank:]][[:blank:]]+)":" ","\\4":"N/A","":"N/A"
 OnUpdateAction=[!UpdateMeter meterISPValue]
 UpdateDivider=-1
 DynamicVariables=1
