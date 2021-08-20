@@ -47,6 +47,24 @@ meterFileHandle = open(meterFile, "w")
 # measureFileHandle.write("OnUpdateAction=[!CommandMeasure \"measureServerPingDetailsData\" \"Run\"]\n")
 # measureFileHandle.write("UpdateDivider=#serverConnCheckInterval#\n\n")
 
+measureFileHandle.write("[measureSetServerStatusToNull]\n")
+measureFileHandle.write("Measure=String\n")
+measureFileHandle.write("String=\n")
+
+measureFileHandle.write("OnUpdateAction=[!SetVariable \"serverPingDetailsData\" \"")
+for listCnt in range(len(serversList)):
+    serverNameAndAddress = serversList[listCnt].split("=")
+    serverName = serverNameAndAddress[0].strip()
+    measureFileHandle.write(serverName+":-2[\\13][\\10]")
+
+measureFileHandle.write("\"]")
+for count in range(len(serversList)):
+    measureFileHandle.write("[!UpdateMeasure \"measureServer"+str(count+1)+"\"]")
+
+measureFileHandle.write("\n")
+measureFileHandle.write("UpdateDivider=-1\n")
+measureFileHandle.write("DynamicVariables=1\n\n")
+
 measureFileHandle.write("[measureServerPingDetailsData]\n")
 measureFileHandle.write("Measure=Plugin\n")
 measureFileHandle.write("Plugin=RunCommand\n")
@@ -81,7 +99,7 @@ for listCnt in range(len(serversList)):
     measureFileHandle.write("Measure=String\n")
     measureFileHandle.write("String=#serverPingDetailsData#\n")
     measureFileHandle.write("RegExpSubstitute=1\n")
-    measureFileHandle.write("Substitute=\"(?s).*"+serverName+":(.*?\\n).*\":\"\\1\",\"(#CRLF#+)\":\"\",\"^(\s+)\":\"\",\"(\s+)$\":\"\",\"1\":\"Online\",\"2\":\"Online/Lagging\",\"3\":\"Offline\",\"4\":\"No Internet\"\n")
+    measureFileHandle.write("Substitute=\"(?s).*"+serverName+":(.*?\\n).*\":\"\\1\",\"(#CRLF#+)\":\"\",\"^(\s+)\":\"\",\"(\s+)$\":\"\",\"-2\":\"\",\"1\":\"Online\",\"2\":\"Online/Lagging\",\"3\":\"Offline\",\"4\":\"No Internet\"\n")
     measureFileHandle.write("OnUpdateAction=[!UpdateMeasure \"measureServer"+str(count)+"UpdateIcon\"]\n")
     measureFileHandle.write("UpdateDivider=-1\n")
     measureFileHandle.write("DynamicVariables=1\n\n")
@@ -90,14 +108,14 @@ for listCnt in range(len(serversList)):
     measureFileHandle.write("Measure=String\n")
     measureFileHandle.write("String=[measureServer"+str(count)+"]\n")
     # measureFileHandle.write("IfCondition=(measureServer"+str(count)+"UpdateIcon = 0)\n")
-    # measureFileHandle.write("IfTrueAction=[!SetOption MeterServer"+str(count)+"Image ImageName \"\"][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
+    # measureFileHandle.write("IfTrueAction=[!SetOption meterServer"+str(count)+"Image ImageName \"\"][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
     measureFileHandle.write("IfMatch=^Online\/Lagging$\n")
     measureFileHandle.write("IfMatchAction=[!SetOption meterServer"+str(count)+"Image ImageName Warning.png][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
     measureFileHandle.write("IfMatch2=^Online$\n")
     measureFileHandle.write("IfMatchAction2=[!SetOption meterServer"+str(count)+"Image ImageName Online.png][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
     measureFileHandle.write("IfMatch3=^Offline$\n")
     measureFileHandle.write("IfMatchAction3=[!SetOption meterServer"+str(count)+"Image ImageName Offline.png][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
-    measureFileHandle.write("IfMatch4=^No Internet$\n")
+    measureFileHandle.write("IfMatch4=^No Internet$|^$\n")
     measureFileHandle.write("IfMatchAction4=[!SetOption meterServer"+str(count)+"Image ImageName \"\"][!UpdateMeter meterServer"+str(count)+"Image][!Redraw]\n")
 
     measureFileHandle.write("UpdateDivider=-1\n")

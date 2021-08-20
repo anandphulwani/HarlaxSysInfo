@@ -185,30 +185,30 @@ DynamicVariables=1
 
 [CalcTopMemory1GPU]
 Measure=Calc
-Formula=(MeasureTopMemory1GPU + MeasureTopMemoryShared1GPU)
+Formula=(MeasureTopMemory1GPU + measureTopMemoryShared1GPU)
 Group=Process1 | NonOverview
 
 [CalcTopMemory2GPU]
 Measure=Calc
-Formula=(MeasureTopMemory2GPU + MeasureTopMemoryShared2GPU)
+Formula=(MeasureTopMemory2GPU + measureTopMemoryShared2GPU)
 Group=Process2 | NonOverview
 
 [CalcTopMemory3GPU]
 Measure=Calc
-Formula=(MeasureTopMemory3GPU + MeasureTopMemoryShared3GPU)
+Formula=(MeasureTopMemory3GPU + measureTopMemoryShared3GPU)
 Group=Process3 | NonOverview
 
 [CalcTopMemory4GPU]
 Measure=Calc
-Formula=(MeasureTopMemory4GPU + MeasureTopMemoryShared4GPU)
+Formula=(MeasureTopMemory4GPU + measureTopMemoryShared4GPU)
 Group=Process4 | NonOverview
 
 [CalcTopMemory5GPU]
 Measure=Calc
-Formula=(MeasureTopMemory5GPU + MeasureTopMemoryShared5GPU)
+Formula=(MeasureTopMemory5GPU + measureTopMemoryShared5GPU)
 Group=Process5 | NonOverview
 
 [CalcTopMemory6GPU]
 Measure=Calc
-Formula=(MeasureTopMemory6GPU + MeasureTopMemoryShared6GPU)
+Formula=(MeasureTopMemory6GPU + measureTopMemoryShared6GPU)
 Group=Process6 | NonOverview

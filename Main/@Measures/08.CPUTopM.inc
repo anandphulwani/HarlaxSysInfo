@@ -1,4 +1,4 @@
-[MeasureTopUsage1CPU]
+[measureTopUsage1CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
@@ -7,7 +7,7 @@ Index=1
 Substitute="":"."
 Group=NonOverview
 
-[MeasureTopUsage2CPU]
+[measureTopUsage2CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
@@ -16,7 +16,7 @@ Index=2
 Substitute="":"."
 Group=NonOverview
 
-[MeasureTopUsage3CPU]
+[measureTopUsage3CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
@@ -25,7 +25,7 @@ Index=3
 Substitute="":"."
 Group=NonOverview
 
-[MeasureTopUsage4CPU]
+[measureTopUsage4CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
@@ -34,7 +34,7 @@ Index=4
 Substitute="":"."
 Group=NonOverview
 
-[MeasureTopUsage5CPU]
+[measureTopUsage5CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
@@ -43,7 +43,7 @@ Index=5
 Substitute="":"."
 Group=NonOverview
 
-[MeasureTopUsage6CPU]
+[measureTopUsage6CPU]
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU

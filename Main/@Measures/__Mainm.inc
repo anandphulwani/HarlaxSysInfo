@@ -42,7 +42,7 @@ UpdateDivider=-1
 ;========================================
 ; 
 ; [measureCPU]
-; Measure=Plugin
+; measure=Plugin
 ; Plugin=UsageMonitor
 ; Alias=CPU
 ; Index=0
@@ -50,7 +50,7 @@ UpdateDivider=-1
 ; Substitute="^0$":"0.01"
 ; 
 ; [CPUTextActual]
-; Measure=Calc
+; measure=Calc
 ; Formula=MeasureCPU/5
 ; 
 ;========================================
@@ -91,7 +91,7 @@ Group=Bin
 ;========================================
 
 ; [InternetType]
-; Measure=Plugin
+; measure=Plugin
 ; Plugin=SysInfo
 ; SysInfoType=ADAPTER_TYPE
 ; SysInfoData=Best
@@ -102,13 +102,13 @@ Group=Bin
 ; IfTrueAction2=[!SetVariable NetType Wifi][!UpdateMeasure InternetStatus]
 
 ; [InternetName]
-; Measure=PLUGIN
+; measure=PLUGIN
 ; Plugin=WifiStatus
 ; WiFiInfoType=SSID
 ; Substitute="-1":""
 
 ; [InternetStatus]
-; Measure=PLUGIN
+; measure=PLUGIN
 ; Plugin=SysInfo
 ; SysInfoType=INTERNET_CONNECTIVITY
 ; Substitute="-1.0":"Offline","1.0":"Connected"
@@ -118,19 +118,19 @@ Group=Bin
 ; IfFalseAction=[!SetOption Internet Text "%6#CRLF#%1 %2-%3 Dl %4b | Ul %5b"][!UpdateMeter Internet][!Redraw]
 
 ; [mAUTH]
-; Measure=PLUGIN
+; measure=PLUGIN
 ; Plugin=WifiStatus
 ; WiFiInfoType=AUTH
 ; Substitute="-1":""
 
 ; [InternetDownloadSpeed]
-; Measure=NetIn
+; measure=NetIn
 ; Interface=Best
 ; MinValue=0
 ; AverageSize=5
 
 ; [InternetUploadSpeed]
-; Measure=NetOut
+; measure=NetOut
 ; Interface=Best
 ; MinValue=0
 ; AverageSize=5

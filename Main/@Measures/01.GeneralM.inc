@@ -22,13 +22,13 @@ UpdateDivider=-1
 
 [measureUserLogonTimeString]
 Measure=Time
-Group=Account
 TimeStamp=[measureUserLogonTime]
 Format=%a, %d-%b-%y %H:%M
 RegExpSubstitute=1
 Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
 DynamicVariables=1
 UpdateDivider=-1
+Group=Account
 
 [measureUptime]
 Measure=Uptime
@@ -53,7 +53,7 @@ RegExpSubstitute=1
 Substitute="(#CRLF#+)":"","^(\s+)":"","(\s+)$":""
 UpdateDivider=-1
 
-[MeasureCSDVersion]
+[measureCSDVersion]
 Measure=Registry
 RegHKey=HKEY_LOCAL_MACHINE
 RegKey=SOFTWARE\Microsoft\Windows NT\CurrentVersion

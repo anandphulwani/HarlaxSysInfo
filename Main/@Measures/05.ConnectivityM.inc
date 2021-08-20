@@ -13,7 +13,7 @@ UpdateDivider=30
 [measurePingAndPublicIPDetailsDataFetcher]
 Measure=Calc
 Formula=1
-OnUpdateAction=[!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"]
+OnUpdateAction=[!CommandMeasure "measurePingAndPublicIPDetailsData" "Run"][!CommandMeasure measureFetchIPDetailsData "Run"]
 UpdateDivider=#internetConnCheckInterval#
 
 [measurePingAndPublicIPDetailsData]
@@ -22,7 +22,7 @@ Plugin=RunCommand
 Parameter=#ROOTCONFIGPATH#/PythonEXEs/pingAndPublicIPDetails.exe -c #internetConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckInternetConnectivity/
 State=Hide
 OutputType=UTF8
-FinishAction=[!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
+FinishAction=[!SetVariable "pingAndPublicIPDetailsData" "[measurePingAndPublicIPDetailsData]"][!EnableMeasure "measureInternetConnected"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureIP"][!UpdateMeasure "measureISP"]
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -31,9 +31,11 @@ Measure=String
 String=#pingAndPublicIPDetailsData#
 RegExpSubstitute=1
 Substitute="(.*){:-:}(.*){:-:}(.*)":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","\\1":"","":"[\9]"
-OnUpdateAction=[!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 500][!UpdateMeasure "measureServerPingDetailsData"][!Delay 500][!CommandMeasure "measureServerPingDetailsData" "Run"]
+OnUpdateAction=[!UpdateMeasure "measureSetServerStatusToNull"][!Delay 1][!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 1][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
+; OnUpdateAction=[!UpdateMeasure "measureInternetUpdateIcon"][!SetVariable "isInternetConnected" "[measureInternetConnected:]"][!Delay 1][!UpdateMeasure "measureServerPingDetailsData"][!Delay 1][!CommandMeasure "measureServerPingDetailsData" "Run"]
 UpdateDivider=-1
 DynamicVariables=1
+Disabled=1
 
 [measureInternetUpdateIcon]
 Measure=String

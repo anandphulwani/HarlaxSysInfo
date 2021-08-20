@@ -14,7 +14,7 @@ Y=0r
 Text="LAN / Internet Connected: "
 Group=Hidethis
 
-[MeterLANConnectedImage]
+[meterLANConnectedImage]
 Meter=Image
 X=3R
 Y=2r
@@ -30,7 +30,7 @@ Y=-2r
 Text=" / "
 Group=Hidethis
 
-[MeterInternetConnectedImage]
+[meterInternetConnectedImage]
 Meter=Image
 X=3R
 Y=2r

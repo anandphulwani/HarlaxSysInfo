@@ -12,7 +12,7 @@ ClipString=1
 
 [styleLeftText]
 StringAlign=Left
-; Meters using styleLeftText will be left-aligned.
+; meters using styleLeftText will be left-aligned.
 StringCase=None
 StringStyle=Bold
 StringEffect=Shadow

@@ -5,19 +5,18 @@ Parameter=wmic memorychip get manufacturer
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Manufacturer.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Manufacturer([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMType]
 Measure=Plugin
 Plugin=RunCommand
-Program=PowerShell.exe
-Parameter=-NoProfile -ExecutionPolicy Bypass -File "getMemory.ps1"
+Program="powershell.exe"
+Parameter="-inputformat none -NoProfile -NonInteractive -File "#ROOTCONFIGPATH#\PythonEXEs\getMemory.ps1""
 State=Hide
 OutputType=UTF8
 RegExpSubstitute=1
-Substitute="The argument.*":"","Size: 0 bytes(?s).*?=======================":"","Size: .*":"","Memory form factor: .*":"","Memory type: .*\((.*)\)":"\1","Type detail: .*":"","Speed: .*":"","=======================":"","(#CRLF#)+":"#CRLF#","^(\s+)":"","(\s+)$":"","":"[\9]"
-; Substitute="(#CRLF#+)":"",",":"[\13][\10]","^(\s+)":"","(\s+)$":"","":"[\9]"        "^(.*)(\r?\n\1)+$":"\1"
+Substitute="The argument.*":"","Size: 0 bytes(?s).*?=======================":"","Size: .*":"","Memory form factor: .*":"","Memory type: .*\((.*)\)":"\1","Type detail: .*":"","Speed: .*":"","=======================":"","(#CRLF#)+":"#CRLF#","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -31,7 +30,7 @@ Parameter=wmic memorychip get devicelocator
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^DeviceLocator.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^DeviceLocator([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMCapacities]
@@ -43,7 +42,7 @@ Parameter=PowerShell -NoProfile -ExecutionPolicy Bypass -NonInteractive -Command
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Capacity.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Capacity([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","":"[\9]"
 UpdateDivider=-1
 DynamicVariables=1
 
@@ -54,7 +53,7 @@ Parameter=wmic memorychip get partnumber
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^PartNumber.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^PartNumber([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","":"[\9]"
 UpdateDivider=-1
 
 [measureRAMSpeeds]
@@ -64,5 +63,5 @@ Parameter=wmic memorychip get speed
 State=Hide
 OutputType=ANSI
 RegExpSubstitute=1
-Substitute="No Instance\(s\) Available\.":"","^Speed.*\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(.+)":"\1 MHz","":"[\9]"
+Substitute="No Instance\(s\) Available\.":"","^Speed([\s.]*?)\n":"","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","(\s\s+)":" ","(.+)":"\1 MHz","":"[\9]"
 UpdateDivider=-1

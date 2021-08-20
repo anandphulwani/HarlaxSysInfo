@@ -74,7 +74,6 @@ OnUpdateAction=[!UpdateMeter meterISPValue]
 UpdateDivider=-1
 DynamicVariables=1
 
-
 [measureNetIn]
 Measure=NetIn
 Interface=Best
