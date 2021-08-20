@@ -1,0 +1,90 @@
+[MeasureServer1]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.1
+Timeout=10000
+IfCondition=(MeasureServer1 = 0)
+IfTrueAction=[!SetOption MeterServer1Image ImageName ""][!UpdateMeter MeterServer1Image][!Redraw]
+IfCondition2=(MeasureServer1 > 0) && (MeasureServer1 < 1000)
+IfTrueAction2=[!SetOption MeterServer1Image ImageName Online.png][!UpdateMeter MeterServer1Image][!Redraw]
+IfCondition3=(MeasureServer1 > 1000)
+IfTrueAction3=[!SetOption MeterServer1Image ImageName Offline.png]][!UpdateMeter MeterServer1Image][!Redraw]
+Substitute="30000":"Offline"
+
+[MeasureServer2]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.2
+Timeout=10000
+IfCondition=(MeasureServer2 = 0)
+IfTrueAction=[!SetOption MeterServer2Image ImageName ""][!UpdateMeter MeterServer2Image][!Redraw]
+IfCondition2=(MeasureServer2 > 0) && (MeasureServer2 < 1000)
+IfTrueAction2=[!SetOption MeterServer2Image ImageName Online.png][!UpdateMeter MeterServer2Image][!Redraw]
+IfCondition3=(MeasureServer2 > 1000)
+IfTrueAction3=[!SetOption MeterServer2Image ImageName Offline.png]][!UpdateMeter MeterServer2Image][!Redraw]
+Substitute="30000":"Offline"
+
+[MeasureServer3]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.3
+Timeout=10000
+IfCondition=(MeasureServer3 = 0)
+IfTrueAction=[!SetOption MeterServer3Image ImageName ""][!UpdateMeter MeterServer3Image][!Redraw]
+IfCondition2=(MeasureServer3 > 0) && (MeasureServer3 < 1000)
+IfTrueAction2=[!SetOption MeterServer3Image ImageName Online.png][!UpdateMeter MeterServer3Image][!Redraw]
+IfCondition3=(MeasureServer3 > 1000)
+IfTrueAction3=[!SetOption MeterServer3Image ImageName Offline.png]][!UpdateMeter MeterServer3Image][!Redraw]
+Substitute="30000":"Offline"
+
+[MeasureServer4]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.4
+Timeout=10000
+IfCondition=(MeasureServer4 = 0)
+IfTrueAction=[!SetOption MeterServer4Image ImageName ""][!UpdateMeter MeterServer4Image][!Redraw]
+IfCondition2=(MeasureServer4 > 0) && (MeasureServer4 < 1000)
+IfTrueAction2=[!SetOption MeterServer4Image ImageName Online.png][!UpdateMeter MeterServer4Image][!Redraw]
+IfCondition3=(MeasureServer4 > 1000)
+IfTrueAction3=[!SetOption MeterServer4Image ImageName Offline.png]][!UpdateMeter MeterServer4Image][!Redraw]
+Substitute="30000":"Offline"
+
+[MeasureServer5]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.5
+Timeout=10000
+IfCondition=(MeasureServer5 = 0)
+IfTrueAction=[!SetOption MeterServer5Image ImageName ""][!UpdateMeter MeterServer5Image][!Redraw]
+IfCondition2=(MeasureServer5 > 0) && (MeasureServer5 < 1000)
+IfTrueAction2=[!SetOption MeterServer5Image ImageName Online.png][!UpdateMeter MeterServer5Image][!Redraw]
+IfCondition3=(MeasureServer5 > 1000)
+IfTrueAction3=[!SetOption MeterServer5Image ImageName Offline.png]][!UpdateMeter MeterServer5Image][!Redraw]
+Substitute="30000":"Offline"
+
+[MeasureServer6]
+Measure=Plugin
+Plugin=Plugins\PingPlugin
+DestAddress=192.168.1.6
+Timeout=10000
+IfCondition=(MeasureServer6 = 0)
+IfTrueAction=[!SetOption MeterServer6Image ImageName ""][!UpdateMeter MeterServer6Image][!Redraw]
+IfCondition2=(MeasureServer6 > 0) && (MeasureServer6 < 1000)
+IfTrueAction2=[!SetOption MeterServer6Image ImageName Online.png][!UpdateMeter MeterServer6Image][!Redraw]
+IfCondition3=(MeasureServer6 > 1000)
+IfTrueAction3=[!SetOption MeterServer6Image ImageName Offline.png]][!UpdateMeter MeterServer6Image][!Redraw]
+Substitute="30000":"Offline"
+
+
+
+; [MeasureServer7]
+; Measure=Plugin
+; Plugin=Plugins\PingPlugin
+; DestAddress=192.168.1.6
+; Timeout=10000
+; IfBelowValue=1000
+; IfBelowAction=[!SetOption MeterServer6Image ImageName Online.png][!UpdateMeter MeterServer6Image][!Redraw]
+; IfAboveValue=1000
+; IfAboveAction=[!SetOption MeterServer6Image ImageName Offline.png][!UpdateMeter MeterServer6Image][!Redraw]
+; Substitute="30000":"Offline"

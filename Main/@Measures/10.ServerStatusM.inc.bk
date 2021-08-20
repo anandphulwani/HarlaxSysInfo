@@ -1,0 +1,39 @@
+[measureServerPingDetailsDataFetcher]
+Measure=Calc
+Formula=1
+OnUpdateAction=[!CommandMeasure "measureServerPingDetailsData" "Run"]
+UpdateDivider=#serverConnCheckInterval#
+
+[measureServerPingDetailsData]
+Measure=Plugin
+Plugin=RunCommand
+Parameter=#ROOTCONFIGPATH#/PythonEXEs/multipleServerPingChecker.exe -i "../ServersToPing.ini" -c #serverConnCheckInterval# -p #ROOTCONFIGPATH#/PingFiles/CheckServerConnectivity/
+State=Hide
+OutputType=UTF8
+FinishAction=[!SetVariable "serverPingDetailsData" "[measureServerPingDetailsData]"][!UpdateMeasure "measureInternetConnected"][!UpdateMeasure "measureServer1"]
+UpdateDivider=-1
+DynamicVariables=1
+
+[measureServer1]
+Measure=String
+String=#serverPingDetailsData#
+RegExpSubstitute=1
+Substitute="(?s).*BSNLRouter:(.*?\n).*":"\1","(#CRLF#+)":"","^(\s+)":"","(\s+)$":"","1":"Online","2":"Online/Lagging","3":"Offline"
+OnUpdateAction=[!UpdateMeasure "measureServer1UpdateIcon"]
+UpdateDivider=-1
+DynamicVariables=1
+
+[measureServer1UpdateIcon]
+Measure=String
+String=[measureServer1]
+IfCondition=(measureServer1UpdateIcon = 0)
+IfTrueAction=[!SetOption MeterServer1Image ImageName ""][!UpdateMeter MeterServer1Image][!Redraw]
+IfMatch=Online
+IfMatchAction=[!SetOption MeterServer1Image ImageName Online.png][!UpdateMeter MeterServer1Image][!Redraw]
+IfMatch2=Online/Lagging
+IfMatchAction2=[!SetOption MeterServer1Image ImageName Warning.png][!UpdateMeter MeterServer1Image][!Redraw]
+IfMatch3=Offline
+IfMatchAction3=[!SetOption MeterServer1Image ImageName Offline.png][!UpdateMeter MeterServer1Image][!Redraw]
+UpdateDivider=-1
+DynamicVariables=1
+
