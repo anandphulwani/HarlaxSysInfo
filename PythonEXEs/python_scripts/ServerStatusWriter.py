@@ -150,7 +150,7 @@ if (iniToReadModifiedTime > meterFileModifiedTime) or (iniToReadModifiedTime > m
         measureFileHandle.write("Measure=String\n")
         measureFileHandle.write("String=#serverPingDetailsData#\n")
         measureFileHandle.write("RegExpSubstitute=1\n")    
-        measureFileHandle.write("Substitute=\"(?s).*"+serverName+":(.*?\\n).*\":\"\\1\",\"(#CRLF#+)\":\"\",\"^(\s+)\":\"\",\"(\s+)$\":\"\",\"([[:blank:]][[:blank:]]+)\":\" \",\"-2\":\"\",\"1\":\"Online\",\"2\":\"Online(Lag)\",\"3\":\"Offline\",\"4\":\"No Internet\"\n")
+        measureFileHandle.write("Substitute=\"(?s).*"+serverName+":(.*?\\n).*\":\"\\1\",\"(#CRLF#+)\":\"#CRLF#\",\"^(\s+)\":\"\",\"(\s+)$\":\"\",\"([[:blank:]][[:blank:]]+)\":\" \",\"-2\":\"\",\"1\":\"Online\",\"2\":\"Online(Lag)\",\"3\":\"Offline\",\"4\":\"No Internet\"\n")
         measureFileHandle.write("OnUpdateAction=[!UpdateMeasure \"measureServer"+str(count)+"UpdateIcon\"]\n")
         measureFileHandle.write("UpdateDivider=-1\n")
         measureFileHandle.write("DynamicVariables=1\n\n")
